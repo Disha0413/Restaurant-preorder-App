@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RFC Dinner Preorder</title>
+<style>
+body { font-family: Arial; background: #fffdf0; text-align: center; padding: 30px; }
+input, select { padding: 10px; margin: 10px; width: 250px; }
+button { padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px; }
+</style>
+</head>
+<body>
+<h2>🍽️ RFC Dinner Preorder</h2>
+<select id="dish"></select>
+<input id="address" placeholder="Your Address" required />
+<input id="name" placeholder="Your Name" required />
+<input id="phone" placeholder="Phone Number" required />
+<button onclick="placeOrder()">Place Order</button>
+
+<script>
+const dishes = [
+  { name: "Paneer Butter Masala", price: 180 },
+  { name: "Veg Biryani", price: 150 },
+  { name: "Masala Dosa", price: 120 },
+  { name: "Chole Bhature", price: 100 },
+];
+
+const select = document.getElementById("dish");
+dishes.forEach(d => {
+  const opt = document.createElement("option");
+  opt.value = JSON.stringify(d);
+  opt.textContent = `${d.name} — ₹${d.price}`;
+  select.appendChild(opt);
+});
+
+async function placeOrder() {
+  const { name, price } = JSON.parse(select.value);
+  const address = document.getElementById("address").value;
+  const phone = document.getElementById("phone").value;
+  const user = document.getElementById("name").value;
+
+  const res = await fetch("/api/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: user, address, phone, dish: name, price })
+  });
+  const data = await res.json();
+  window.location.href = `/order.html?orderId=${data.orderId}`;
+}
+</script>
+</body>
+</html>
