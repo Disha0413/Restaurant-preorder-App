@@ -1,5 +1,8 @@
 # 🍴 RFC Restaurant Pre-Order App
 
+<img width="964" height="470" alt="Screenshot 2025-11-09 183117" src="https://github.com/user-attachments/assets/798210d6-6188-4e79-a82e-1543d3185f01" />
+
+
 ## 📖 Overview
 This project is a **pre-order system for a non-veg restaurant**, designed for my dad’s business plan.  
 Customers can place pre-orders for dinner, which are **prepared and delivered between 8 PM – 11 PM**.  
